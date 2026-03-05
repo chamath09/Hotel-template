@@ -17,13 +17,13 @@ const Attractions = () => {
     },
     {
       title: "Sankhapala Raja Maha Viharaya",
-      image: "https://images.unsplash.com/photo-1589308010442-c8d9c7182552?q=80&w=2070&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1586184658425-467414844058?q=80&w=2070&auto=format&fit=crop",
       distance: "10 km away",
       desc: "An ancient Buddhist temple with rich history."
     },
     {
       title: "Local Safari Tours",
-      image: "https://images.unsplash.com/photo-1535581652167-3d6b98c36cd0?q=80&w=2070&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=2068&auto=format&fit=crop",
       distance: "Available at Hotel",
       desc: "Book your jeep safari directly from our reception."
     },
