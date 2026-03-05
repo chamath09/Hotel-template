@@ -1,10 +1,9 @@
 import { motion } from 'motion/react';
 import { Star, Quote } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
 
 const Reviews = () => {
   const reviews = [
@@ -12,37 +11,41 @@ const Reviews = () => {
       name: "Sarah Jenkins",
       country: "United Kingdom",
       rating: 5,
-      text: "Absolutely wonderful stay! The proximity to Udawalawe National Park is unbeatable. The staff arranged our safari and it was magical."
+      text: "Absolutely wonderful stay! The proximity to Udawalawe National Park is unbeatable. The staff arranged our safari and it was magical. The room was spotless and very comfortable."
     },
     {
       name: "David Chen",
       country: "Singapore",
       rating: 4,
-      text: "Clean rooms, great pool, and very friendly staff. The breakfast buffet had a good mix of local and western options."
+      text: "Clean rooms, great pool, and very friendly staff. The breakfast buffet had a good mix of local and western options. Would definitely recommend to friends visiting Sri Lanka."
     },
     {
       name: "Amara Perera",
       country: "Sri Lanka",
       rating: 5,
-      text: "A gem in Embilipitiya. We stayed here for a family vacation and the kids loved the pool. Highly recommended!"
+      text: "A gem in Embilipitiya. We stayed here for a family vacation and the kids loved the pool. Highly recommended! The service was exceptional from start to finish."
     },
     {
       name: "Michael Ross",
       country: "Australia",
       rating: 5,
-      text: "Best hotel in the area. The rooms are spacious and the air conditioning works perfectly, which is essential here. Will come back!"
+      text: "Best hotel in the area. The rooms are spacious and the air conditioning works perfectly, which is essential here. Will come back! Great value for money."
     },
     {
       name: "Emma Wilson",
       country: "Germany",
       rating: 5,
-      text: "Lovely atmosphere and delicious food. The reception team was very helpful with directions and transport."
+      text: "Lovely atmosphere and delicious food. The reception team was very helpful with directions and transport. A truly relaxing experience after a long day of travel."
     }
   ];
 
   return (
-    <section className="py-24 bg-amber-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-amber-50/50 overflow-hidden relative">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-64 h-64 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-x-1/2 translate-y-1/2"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <motion.div 
             initial={{ opacity: 0, scale: 0.5 }}
@@ -80,63 +83,61 @@ const Reviews = () => {
           transition={{ duration: 0.8 }}
         >
           <Swiper
-            modules={[Pagination, Autoplay, EffectCoverflow]}
-            effect={'coverflow'}
+            modules={[Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
             grabCursor={true}
-            centeredSlides={true}
-            slidesPerView={'auto'}
-            coverflowEffect={{
-              rotate: 0,
-              stretch: 0,
-              depth: 100,
-              modifier: 2.5,
-              slideShadows: false,
-            }}
             autoplay={{
-              delay: 3000,
+              delay: 5000,
               disableOnInteraction: false,
             }}
-            pagination={{ clickable: true, dynamicBullets: true }}
+            pagination={{ 
+              clickable: true, 
+              dynamicBullets: true,
+            }}
             breakpoints={{
               640: {
                 slidesPerView: 1,
+                spaceBetween: 20,
               },
               768: {
                 slidesPerView: 2,
+                spaceBetween: 30,
               },
               1024: {
                 slidesPerView: 3,
+                spaceBetween: 30,
               },
             }}
-            className="pb-16"
+            className="!pb-16 px-4"
           >
             {reviews.map((review, index) => (
-              <SwiperSlide key={index} className="max-w-md">
-                <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100 h-full flex flex-col relative mx-4 my-4">
-                  <div className="absolute -top-6 left-8 bg-amber-500 text-white p-3 rounded-full shadow-lg">
-                    <Quote size={24} fill="currentColor" />
-                  </div>
+              <SwiperSlide key={index} className="!h-auto">
+                <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 h-full flex flex-col relative hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <Quote className="text-amber-100 absolute top-6 right-6 w-12 h-12 rotate-180" fill="currentColor" />
                   
-                  <div className="mt-6 mb-6 flex-grow">
-                    <p className="text-gray-600 italic text-lg leading-relaxed">
-                      "{review.text}"
-                    </p>
-                  </div>
-                  
-                  <div className="flex items-center border-t border-gray-100 pt-6">
-                    <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 font-bold text-xl">
+                  <div className="flex items-center mb-6">
+                    <div className="w-14 h-14 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md">
                       {review.name.charAt(0)}
                     </div>
                     <div className="ml-4">
-                      <h4 className="text-base font-bold text-gray-900">{review.name}</h4>
+                      <h4 className="text-lg font-bold text-gray-900">{review.name}</h4>
                       <span className="text-sm text-gray-500 font-medium">{review.country}</span>
                     </div>
-                    <div className="ml-auto flex">
+                  </div>
+
+                  <div className="mb-6 flex-grow">
+                    <div className="flex mb-3">
                       {[...Array(review.rating)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 text-amber-400 fill-current" />
                       ))}
                     </div>
+                    <p className="text-gray-600 italic text-base leading-relaxed">
+                      "{review.text}"
+                    </p>
                   </div>
+                  
+                  <div className="w-12 h-1 bg-amber-500 rounded-full opacity-20"></div>
                 </div>
               </SwiperSlide>
             ))}
