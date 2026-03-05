@@ -13,34 +13,74 @@ const Amenities = () => {
     { icon: <Utensils className="w-8 h-8" />, title: "Restaurant", desc: "Local and international cuisine." },
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } }
+  };
+
   return (
-    <section id="amenities" className="py-20 bg-white">
+    <section id="amenities" className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="text-amber-500 font-medium tracking-wider uppercase text-sm">Facilities</span>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mt-2">
+          <motion.span 
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-amber-600 font-bold tracking-widest uppercase text-sm"
+          >
+            Facilities
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mt-3"
+          >
             Hotel Amenities
-          </h2>
+          </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {amenities.map((item, index) => (
+        <motion.div 
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
+          {amenities.map((amenity, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-lg transition-all duration-300 border border-transparent hover:border-gray-100 group"
+              variants={item}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              className="p-8 rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300 border-b-4 border-transparent hover:border-amber-500 group relative overflow-hidden"
             >
-              <div className="text-gray-400 group-hover:text-amber-500 transition-colors duration-300 mb-4">
-                {item.icon}
+              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-amber-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+              
+              <div className="relative z-10">
+                <div className="w-16 h-16 rounded-full bg-amber-50 flex items-center justify-center text-amber-600 mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300 shadow-sm">
+                  {amenity.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-amber-600 transition-colors duration-300">
+                  {amenity.title}
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed group-hover:text-gray-600">
+                  {amenity.desc}
+                </p>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-              <p className="text-gray-500 text-sm">{item.desc}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

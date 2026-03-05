@@ -10,7 +10,7 @@ const Hero = () => {
           alt="Centuria City Hotel"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       {/* Content */}
@@ -19,7 +19,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium mb-6 border border-white/30"
+          className="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium mb-6 border border-white/30 shadow-sm"
         >
           Welcome to Embilipitiya, Sri Lanka
         </motion.span>
@@ -28,10 +28,10 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight"
+          className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight drop-shadow-lg"
         >
           Centuria City Hotel
-          <span className="block text-2xl md:text-3xl font-sans font-light mt-4 text-white/90">
+          <span className="block text-2xl md:text-3xl font-sans font-light mt-4 text-gray-100 drop-shadow-md">
             Comfort & Luxury in Embilipitiya
           </span>
         </motion.h1>
@@ -40,7 +40,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto"
+          className="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto drop-shadow-md font-medium"
         >
           Relax in comfort while exploring the beauty of Udawalawe and Embilipitiya.
         </motion.p>
